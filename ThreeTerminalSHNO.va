@@ -304,8 +304,9 @@ analog begin
 
 	V_dc = V_MTJ_new + R_HM*(IHM+IMTJ);
 	V_ac = R_prec_second*cos((w_g_second*$abstime)+phase)*IMTJ+R_prec_fund*cos((w_g_fund*$abstime)+phase)*IMTJ;
-	V_tot = V_ac;
+	V_tot = V_ac+V_dc;
 	V(I_MTJ,GND)<+ V_tot;
+	V(I_HM,GND)<+ R_HM*(IHM+IMTJ)+R_HM*IHM;
 end
 
 endmodule
